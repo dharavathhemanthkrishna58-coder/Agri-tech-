@@ -1,0 +1,2224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AgriSmart — Smart Farming Marketplace</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root{
+    --green:#123d2a;
+    --green2:#1c6b46;
+    --lime:#b7ef65;
+    --bg:#f5f7f2;
+    --card:#ffffff;
+    --text:#173126;
+    --muted:#7a8a82;
+    --border:#e5ebe6;
+    --red:#e55b5b;
+    --yellow:#e5a82e;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:"DM Sans",sans-serif;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    position:fixed;
+    width:245px;
+    height:100vh;
+    background:var(--green);
+    color:white;
+    padding:28px 18px;
+    z-index:100;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:"Space Grotesk";
+    font-size:22px;
+    font-weight:700;
+    padding:0 12px 35px;
+}
+
+.logo-icon{
+    width:38px;
+    height:38px;
+    border-radius:12px;
+    background:var(--lime);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--green);
+}
+
+.menu-title{
+    color:#769181;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    padding:0 13px;
+    margin:20px 0 10px;
+}
+
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.nav a{
+    color:#b9cabe;
+    text-decoration:none;
+    padding:12px 14px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:14px;
+    transition:.25s;
+}
+
+.nav a:hover,
+.nav a.active{
+    background:#ffffff12;
+    color:white;
+}
+
+.nav a.active{
+    box-shadow:inset 3px 0 var(--lime);
+}
+
+/* MAIN */
+
+.main{
+    margin-left:245px;
+    padding:28px 38px 100px;
+    max-width:1500px;
+}
+
+/* TOPBAR */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:32px;
+}
+
+.search{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:11px 15px;
+    width:280px;
+    outline:none;
+}
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.avatar{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#d9f2b4;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+}
+
+/* HERO */
+
+.hero{
+    background:linear-gradient(120deg,#123d2a,#246b48);
+    color:white;
+    border-radius:26px;
+    padding:38px;
+    position:relative;
+    overflow:hidden;
+    margin-bottom:25px;
+}
+
+.hero:after{
+    content:"🌾";
+    position:absolute;
+    right:45px;
+    bottom:-35px;
+    font-size:170px;
+    opacity:.12;
+}
+
+.hero small{
+    color:#b8d6c4;
+}
+
+.hero h1{
+    font-family:"Space Grotesk";
+    font-size:34px;
+    margin:9px 0;
+}
+
+.hero p{
+    color:#c4d8cc;
+    max-width:620px;
+    line-height:1.6;
+}
+
+.hero-btn{
+    display:inline-flex;
+    margin-top:22px;
+    background:var(--lime);
+    color:#17351f;
+    text-decoration:none;
+    padding:12px 18px;
+    border-radius:11px;
+    font-weight:700;
+}
+
+/* GRID */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.grid-3{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:18px;
+}
+
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:22px;
+    box-shadow:0 8px 30px rgba(21,53,37,.04);
+}
+
+.stat-card{
+    position:relative;
+    overflow:hidden;
+}
+
+.stat-card .icon{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:#edf7e7;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+    margin-bottom:18px;
+}
+
+.stat{
+    font-family:"Space Grotesk";
+    font-size:27px;
+    margin:4px 0;
+}
+
+.muted{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.up{
+    color:#238653;
+    font-size:12px;
+    font-weight:700;
+}
+
+.down{
+    color:var(--red);
+    font-size:12px;
+    font-weight:700;
+}
+
+/* SECTION */
+
+.section{
+    margin-top:28px;
+}
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.section-head h2{
+    font-family:"Space Grotesk";
+    font-size:21px;
+}
+
+.section-head a{
+    color:var(--green2);
+    text-decoration:none;
+    font-size:13px;
+    font-weight:700;
+}
+
+/* SELL CARD */
+
+.sell-card{
+    background:linear-gradient(135deg,#f0f9e9,#ffffff);
+    border:1px solid #dcebd6;
+}
+
+.crop-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.crop-name{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.crop-img{
+    width:55px;
+    height:55px;
+    border-radius:15px;
+    background:#e5f4d9;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+}
+
+.best{
+    background:var(--green);
+    color:white;
+    padding:6px 10px;
+    border-radius:30px;
+    font-size:11px;
+}
+
+.price-big{
+    font-family:"Space Grotesk";
+    font-size:34px;
+    margin-top:18px;
+}
+
+.metrics{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:18px;
+}
+
+.metric{
+    background:white;
+    border-radius:12px;
+    padding:12px;
+}
+
+.metric strong{
+    display:block;
+    margin-top:4px;
+}
+
+.primary-btn{
+    width:100%;
+    border:0;
+    background:var(--green);
+    color:white;
+    padding:13px;
+    border-radius:11px;
+    margin-top:18px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.secondary-btn{
+    width:100%;
+    border:1px solid var(--border);
+    background:white;
+    padding:12px;
+    border-radius:11px;
+    margin-top:10px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+/* TABLE */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    text-align:left;
+    padding:14px 8px;
+    border-bottom:1px solid var(--border);
+    font-size:13px;
+}
+
+th{
+    color:var(--muted);
+    font-size:11px;
+    text-transform:uppercase;
+}
+
+.price{
+    font-weight:700;
+    color:var(--green2);
+}
+
+.badge{
+    padding:5px 9px;
+    border-radius:20px;
+    background:#eaf6e6;
+    color:#247743;
+    font-size:10px;
+    font-weight:700;
+}
+
+.badge.yellow{
+    background:#fff5dc;
+    color:#9b6b00;
+}
+
+/* STORAGE */
+
+.storage{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+}
+
+.storage-item{
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:17px;
+}
+
+.storage-top{
+    display:flex;
+    justify-content:space-between;
+}
+
+.progress{
+    height:6px;
+    background:#edf0ed;
+    border-radius:20px;
+    margin-top:14px;
+    overflow:hidden;
+}
+
+.progress span{
+    display:block;
+    height:100%;
+    width:64%;
+    background:#68a95c;
+}
+
+/* ALERTS */
+
+.alert{
+    display:flex;
+    gap:13px;
+    align-items:flex-start;
+    padding:14px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.alert-icon{
+    width:38px;
+    height:38px;
+    background:#f2f8e9;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* MAP */
+
+.map{
+    height:280px;
+    border-radius:17px;
+    background:
+    linear-gradient(90deg,#e1eadf 1px,transparent 1px),
+    linear-gradient(#e1eadf 1px,transparent 1px),
+    #edf3eb;
+    background-size:40px 40px;
+    position:relative;
+    overflow:hidden;
+}
+
+.map:after{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:80px;
+    background:#d2e1cf;
+    transform:rotate(-20deg);
+    top:100px;
+    left:-100px;
+}
+
+.map-pin{
+    position:absolute;
+    z-index:2;
+    font-size:25px;
+}
+
+/* QUICK ACTION */
+
+.quick{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.quick a{
+    text-decoration:none;
+    color:var(--text);
+    background:white;
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:18px;
+    transition:.2s;
+}
+
+.quick a:hover{
+    transform:translateY(-3px);
+}
+
+.quick-icon{
+    font-size:25px;
+    margin-bottom:10px;
+}
+
+/* MOBILE */
+
+.bottom-nav{
+    display:none;
+}
+
+@media(max-width:1000px){
+
+    .sidebar{
+        display:none;
+    }
+
+    .main{
+        margin-left:0;
+        padding:18px 15px 90px;
+    }
+
+    .topbar{
+        margin-bottom:20px;
+    }
+
+    .search{
+        width:180px;
+    }
+
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .grid-3{
+        grid-template-columns:1fr;
+    }
+
+    .quick{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .bottom-nav{
+        display:flex;
+        position:fixed;
+        bottom:0;
+        left:0;
+        right:0;
+        height:65px;
+        background:white;
+        border-top:1px solid var(--border);
+        z-index:200;
+        justify-content:space-around;
+        align-items:center;
+    }
+
+    .bottom-nav a{
+        text-decoration:none;
+        color:var(--muted);
+        font-size:10px;
+        text-align:center;
+    }
+
+    .bottom-nav span{
+        display:block;
+        font-size:20px;
+        margin-bottom:2px;
+    }
+}
+
+@media(max-width:600px){
+
+    .hero{
+        padding:27px;
+        border-radius:20px;
+    }
+
+    .hero h1{
+        font-size:27px;
+    }
+
+    .grid{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .card{
+        padding:16px;
+        border-radius:16px;
+    }
+
+    .stat{
+        font-size:21px;
+    }
+
+    .grid-3{
+        display:block;
+    }
+
+    .section{
+        margin-top:22px;
+    }
+
+    .metrics{
+        grid-template-columns:1fr;
+    }
+
+    .storage{
+        grid-template-columns:1fr;
+    }
+
+    .topbar h2{
+        font-size:19px;
+    }
+
+    .search{
+        display:none;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        <div class="logo-icon">🌾</div>
+        AgriSmart
+    </div>
+
+    <div class="menu-title">MAIN</div>
+
+    <div class="nav">
+
+        <a href="#dashboard" class="active">
+            🏠 Dashboard
+        </a>
+
+        <a href="#crop">
+            🌱 Crop Planner
+        </a>
+
+        <a href="#prices">
+            💰 Market Prices
+        </a>
+
+        <a href="#buyers">
+            🤝 Buyers
+        </a>
+
+        <a href="#storage">
+            🧊 Storage
+        </a>
+
+    </div>
+
+    <div class="menu-title">MANAGE</div>
+
+    <div class="nav">
+
+        <a href="#sell">
+            🏆 Smart Sell
+        </a>
+
+        <a href="#transport">
+            🚚 Transport
+        </a>
+
+        <a href="#transactions">
+            📦 Transactions
+        </a>
+
+        <a href="#analytics">
+            📊 Analytics
+        </a>
+
+    </div>
+
+</aside>
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+        <div>
+            <h2>Good afternoon, FARMER 👋</h2>
+            <span class="muted">
+                Here's what's happening with your farm today.
+            </span>
+        </div>
+
+        <div class="profile">
+
+            <input
+                class="search"
+                placeholder="Search crops, buyers..."
+            >
+
+            <div class="avatar"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- HERO -->
+
+    <section class="hero" id="dashboard">
+
+        <small>SMART FARMER MARKETPLACE</small>
+
+        <h1>Sell smarter.<br>Earn better.</h1>
+
+        <p>
+            Compare markets, buyers, transport and storage
+            to find the selling opportunity with the best
+            estimated net return.
+        </p>
+
+        <a href="#sell" class="hero-btn">
+            Find my best selling option →
+        </a>
+
+    </section>
+
+
+    <!-- STATS -->
+
+    <section class="grid">
+
+        <div class="card stat-card">
+
+            <div class="icon">💰</div>
+
+            <span class="muted">Total Revenue</span>
+
+            <div class="stat">₹2.40L</div>
+
+            <span class="up">↑ 12.8% this month</span>
+
+        </div>
+
+
+        <div class="card stat-card">
+
+            <div class="icon">🌾</div>
+
+            <span class="muted">Available Produce</span>
+
+            <div class="stat">2,000 kg</div>
+
+            <span class="muted">Tomato • A Grade</span>
+
+        </div>
+
+
+        <div class="card stat-card">
+
+            <div class="icon">📈</div>
+
+            <span class="muted">Best Price Today</span>
+
+            <div class="stat">₹29/kg</div>
+
+            <span class="up">↑ 8.4% today</span>
+
+        </div>
+
+
+        <div class="card stat-card">
+
+            <div class="icon">🗑️</div>
+
+            <span class="muted">Wastage</span>
+
+            <div class="stat">4.2%</div>
+
+            <span class="up">↓ 1.8% improved</span>
+
+        </div>
+
+    </section>
+
+
+    <!-- SMART SELL -->
+
+    <section class="section" id="sell">
+
+        <div class="section-head">
+
+            <h2>🏆 Best Selling Opportunity</h2>
+
+            <a href="#prices">Compare all →</a>
+
+        </div>
+
+
+        <div class="grid-3">
+
+            <div class="card sell-card">
+
+                <div class="crop-head">
+
+                    <div class="crop-name">
+
+                        <div class="crop-img">🍅</div>
+
+                        <div>
+                            <h3>Fresh Tomato</h3>
+                            <span class="muted">
+                                2,000 kg • A Grade
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <span class="best">
+                        ★ BEST OPTION
+                    </span>
+
+                </div>
+
+
+                <div class="price-big">
+                    ₹29/kg
+                </div>
+
+                <span class="up">
+                    ↑ ₹2.40 from yesterday
+                </span>
+
+
+                <div class="metrics">
+
+                    <div class="metric">
+                        <span class="muted">Buyer</span>
+                        <strong>FreshFoods</strong>
+                    </div>
+
+                    <div class="metric">
+                        <span class="muted">Distance</span>
+                        <strong>18 km</strong>
+                    </div>
+
+                    <div class="metric">
+                        <span class="muted">Damage</span>
+                        <strong>3%</strong>
+                    </div>
+
+                </div>
+
+
+                <button class="primary-btn"
+                onclick="sellRequest()">
+                    Sell to this buyer →
+                </button>
+
+            </div>
+
+
+            <!-- NET INCOME -->
+
+            <div class="card">
+
+                <h3>Estimated Net Return</h3>
+
+                <p class="muted">
+                    After transport & expected damage
+                </p>
+
+                <div class="price-big">
+                    ₹54,260
+                </div>
+
+                <div class="alert">
+
+                    <div class="alert-icon">📦</div>
+
+                    <div>
+                        <b>Sellable quantity</b>
+
+                        <p class="muted">
+                            1,940 kg after estimated damage
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="alert">
+
+                    <div class="alert-icon">🚚</div>
+
+                    <div>
+                        <b>Transport</b>
+
+                        <p class="muted">
+                            Estimated ₹2,000
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUICK ACTIONS -->
+
+    <section class="section">
+
+        <div class="section-head">
+            <h2>Quick Actions</h2>
+        </div>
+
+        <div class="quick">
+
+            <a href="#crop">
+                <div class="quick-icon">🌱</div>
+                <b>Plan Next Crop</b>
+                <p class="muted">Get smart recommendations</p>
+            </a>
+
+            <a href="#prices">
+                <div class="quick-icon">💰</div>
+                <b>Check Prices</b>
+                <p class="muted">Compare today's prices</p>
+            </a>
+
+            <a href="#storage">
+                <div class="quick-icon">🧊</div>
+                <b>Find Storage</b>
+                <p class="muted">Store & sell later</p>
+            </a>
+
+            <a href="#buyers">
+                <div class="quick-icon">🤝</div>
+                <b>Find Buyers</b>
+                <p class="muted">Sell directly</p>
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRICES -->
+
+    <section class="section" id="prices">
+
+        <div class="section-head">
+
+            <h2>💰 Market Price Discovery</h2>
+
+            <a href="#">View history →</a>
+
+        </div>
+
+        <div class="card">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Market / Buyer</th>
+                        <th>Distance</th>
+                        <th>Price</th>
+                        <th>Trend</th>
+                        <th>Status</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><b>FreshFoods Pvt Ltd</b></td>
+                        <td>18 km</td>
+                        <td class="price">₹29/kg</td>
+                        <td class="up">↑ 8.4%</td>
+                        <td><span class="badge">BEST</span></td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Warangal Market</b></td>
+                        <td>12 km</td>
+                        <td class="price">₹24/kg</td>
+                        <td class="up">↑ 3.1%</td>
+                        <td><span class="badge">OPEN</span></td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Hyderabad Market</b></td>
+                        <td>145 km</td>
+                        <td class="price">₹27/kg</td>
+                        <td class="down">↓ 1.2%</td>
+                        <td><span class="badge yellow">DISTANT</span></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- STORAGE -->
+
+    <section class="section" id="storage">
+
+        <div class="section-head">
+
+            <h2>🧊 Smart Storage</h2>
+
+            <a href="#">Find more →</a>
+
+        </div>
+
+        <div class="storage">
+
+            <div class="card storage-item">
+
+                <div class="storage-top">
+
+                    <div>
+                        <h3>Cold Storage A</h3>
+                        <span class="muted">8 km away</span>
+                    </div>
+
+                    <span class="badge">AVAILABLE</span>
+
+                </div>
+
+                <p style="margin-top:15px">
+                    ₹0.80/kg/day
+                </p>
+
+                <div class="progress">
+                    <span></span>
+                </div>
+
+                <p class="muted" style="margin-top:7px">
+                    64% capacity used
+                </p>
+
+                <button class="secondary-btn">
+                    View facility
+                </button>
+
+            </div>
+
+
+            <div class="card storage-item">
+
+                <div class="storage-top">
+
+                    <div>
+                        <h3>Agri Warehouse</h3>
+                        <span class="muted">14 km away</span>
+                    </div>
+
+                    <span class="badge">AVAILABLE</span>
+
+                </div>
+
+                <p style="margin-top:15px">
+                    Grain • Onion • Potato
+                </p>
+
+                <div class="progress">
+                    <span style="width:42%"></span>
+                </div>
+
+                <p class="muted" style="margin-top:7px">
+                    42% capacity used
+                </p>
+
+                <button class="secondary-btn">
+                    View facility
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BUYERS -->
+
+    <section class="section" id="buyers">
+
+        <div class="section-head">
+
+            <h2>🤝 Verified Buyers</h2>
+
+            <a href="#">
+              <!-- STORAGE -->
+
+<section class="section" id="storage">
+
+    <div class="section-head">
+        <div>
+            <h2>Smart Storage</h2>
+            <p class="muted">Store your produce safely and sell when the opportunity is better.</p>
+        </div>
+
+        <a href="#">View all →</a>
+    </div>
+
+    <div class="storage-grid">
+
+        <div class="storage-card featured-storage">
+
+            <div class="storage-icon">❄️</div>
+
+            <div>
+                <span class="tag">RECOMMENDED</span>
+                <h3>FreshCold Storage</h3>
+                <p class="muted">Temperature-controlled vegetable storage</p>
+            </div>
+
+            <div class="storage-details">
+                <span>📍 12 km away</span>
+                <span>📦 8,000 kg available</span>
+                <span>₹0.80/kg/day</span>
+            </div>
+
+            <button class="primary-btn"
+                onclick="storageRequest('FreshCold Storage')">
+                Check Availability
+            </button>
+
+        </div>
+
+
+        <div class="storage-card">
+
+            <div class="storage-icon">🏪</div>
+
+            <h3>AgriSafe Warehouse</h3>
+
+            <p class="muted">
+                Dry storage for suitable crops
+            </p>
+
+            <div class="storage-details">
+                <span>📍 18 km away</span>
+                <span>📦 5,000 kg</span>
+                <span>₹0.50/kg/day</span>
+            </div>
+
+            <button class="secondary-btn"
+                onclick="storageRequest('AgriSafe Warehouse')">
+                View Details
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- SELL NOW VS STORE -->
+
+    <div class="decision-card">
+
+        <div>
+            <span class="tag">SMART DECISION</span>
+
+            <h2>Sell Now vs Store & Sell Later</h2>
+
+            <p class="muted">
+                Compare your estimated income before deciding what to do
+                with your harvested crop.
+            </p>
+        </div>
+
+        <div class="decision-options">
+
+            <div class="decision-option">
+                <span>Sell Now</span>
+                <strong>₹52,200</strong>
+                <small>Estimated net income</small>
+            </div>
+
+            <div class="decision-arrow">
+                VS
+            </div>
+
+            <div class="decision-option recommended">
+                <span>Store & Sell Later</span>
+                <strong>₹56,400</strong>
+                <small>Estimated net income</small>
+            </div>
+
+        </div>
+
+        <div class="decision-result">
+            💡 Estimated additional return:
+            <strong>₹4,200</strong>
+        </div>
+
+        <button class="primary-btn">
+            Find Storage & Sell Later
+        </button>
+
+    </div>
+
+</section>
+<!-- MARKET MAP -->
+
+<section class="section" id="map">
+
+    <div class="section-head">
+
+        <div>
+            <h2>Nearby Markets</h2>
+
+            <p class="muted">
+                Find the best markets and selling opportunities near you.
+            </p>
+        </div>
+
+        <a href="#">Open Map →</a>
+
+    </div>
+
+
+    <div class="map-card">
+
+        <div class="map-placeholder">
+
+            <div class="map-center">
+
+                <div class="map-pin">📍</div>
+
+                <h3>Markets Near You</h3>
+
+                <p>
+                    Nearby markets, buyers and storage facilities
+                </p>
+
+                <button class="primary-btn">
+                    Explore Markets
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="market-list">
+
+            <div class="market-item">
+
+                <div class="market-icon">
+                    🏪
+                </div>
+
+                <div class="market-info">
+
+                    <h3>Warangal Vegetable Market</h3>
+
+                    <p class="muted">
+                        📍 14 km away
+                    </p>
+
+                </div>
+
+                <div class="market-price">
+
+                    <strong>₹29/kg</strong>
+
+                    <span>Tomato</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="market-item">
+
+                <div class="market-icon">
+                    🏪
+                </div>
+
+                <div class="market-info">
+
+                    <h3>Local Wholesale Market</h3>
+
+                    <p class="muted">
+                        📍 21 km away
+                    </p>
+
+                </div>
+
+                <div class="market-price">
+
+                    <strong>₹28/kg</strong>
+
+                    <span>Tomato</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="market-item">
+
+                <div class="market-icon">
+                    🏪
+                </div>
+
+                <div class="market-info">
+
+                    <h3>Regional Farmers Market</h3>
+
+                    <p class="muted">
+                        📍 32 km away
+                    </p>
+
+                </div>
+
+                <div class="market-price">
+
+                    <strong>₹30/kg</strong>
+
+                    <span>Tomato</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- TRANSACTIONS -->
+
+<section class="section" id="transactions">
+
+    <div class="section-head">
+
+        <div>
+            <h2>Recent Transactions</h2>
+
+            <p class="muted">
+                Track your crop sales, payments and delivery status.
+            </p>
+        </div>
+
+        <a href="#">View all →</a>
+
+    </div>
+
+
+    <div class="transaction-card">
+
+        <div class="transaction-row">
+
+            <div class="transaction-icon">
+                🍅
+            </div>
+
+            <div class="transaction-info">
+
+                <h3>Tomatoes</h3>
+
+                <p class="muted">
+                    AgroFresh Foods • 1,800 kg
+                </p>
+
+            </div>
+
+            <div class="transaction-price">
+
+                <strong>₹52,200</strong>
+
+                <span class="status completed">
+                    Completed
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="transaction-row">
+
+            <div class="transaction-icon">
+                🌶️
+            </div>
+
+            <div class="transaction-info">
+
+                <h3>Green Chilli</h3>
+
+                <p class="muted">
+                    Sunrise Processors • 950 kg
+                </p>
+
+            </div>
+
+            <div class="transaction-price">
+
+                <strong>₹38,000</strong>
+
+                <span class="status pending">
+                    Pickup Pending
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="transaction-row">
+
+            <div class="transaction-icon">
+                🧅
+            </div>
+
+            <div class="transaction-info">
+
+                <h3>Onions</h3>
+
+                <p class="muted">
+                    GreenFarm Traders • 1,200 kg
+                </p>
+
+            </div>
+
+            <div class="transaction-price">
+
+                <strong>₹31,200</strong>
+
+                <span class="status completed">
+                    Completed
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ANALYTICS -->
+
+<section class="section" id="analytics">
+
+    <div class="section-head">
+
+        <div>
+            <h2>Farm Analytics</h2>
+
+            <p class="muted">
+                Understand your sales, revenue and crop performance.
+            </p>
+        </div>
+
+        <a href="#">View Report →</a>
+
+    </div>
+
+
+    <div class="analytics-grid">
+
+        <div class="analytics-card">
+            <span class="analytics-icon">💰</span>
+            <p class="muted">Total Revenue</p>
+            <h2>₹1,84,600</h2>
+            <span class="growth">↑ 12.5% this month</span>
+        </div>
+
+
+        <div class="analytics-card">
+            <span class="analytics-icon">🌾</span>
+            <p class="muted">Crops Sold</p>
+            <h2>4.8 Tons</h2>
+            <span class="growth">↑ 8.2% this month</span>
+        </div>
+
+
+        <div class="analytics-card">
+            <span class="analytics-icon">📦</span>
+            <p class="muted">Total Wastage</p>
+            <h2>6.4%</h2>
+            <span class="warning">↓ 2.1% improved</span>
+        </div>
+
+
+        <div class="analytics-card">
+            <span class="analytics-icon">⭐</span>
+            <p class="muted">Best Performing Crop</p>
+            <h2>Tomato</h2>
+            <span class="growth">₹29/kg average</span>
+        </div>
+
+    </div>
+
+
+    <div class="analytics-main">
+
+        <div class="chart-card">
+
+            <div class="chart-header">
+
+                <div>
+                    <h3>Revenue Overview</h3>
+                    <p class="muted">Last 6 months</p>
+                </div>
+
+                <span class="chart-value">
+                    ₹1.84L
+                </span>
+
+            </div>
+
+
+            <div class="fake-chart">
+
+                <div class="chart-bars">
+
+                    <div class="bar" style="height:45%">
+                        <span>May</span>
+                    </div>
+
+                    <div class="bar" style="height:60%">
+                        <span>Jun</span>
+                    </div>
+
+                    <div class="bar" style="height:52%">
+                        <span>Jul</span>
+                    </div>
+
+                    <div class="bar" style="height:75%">
+                        <span>Aug</span>
+                    </div>
+
+                    <div class="bar" style="height:68%">
+                        <span>Sep</span>
+                    </div>
+
+                    <div class="bar active" style="height:90%">
+                        <span>Oct</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="performance-card">
+
+            <h3>Crop Performance</h3>
+
+            <div class="crop-performance">
+
+                <div>
+                    <span>🍅 Tomato</span>
+                    <strong>₹82,400</strong>
+                </div>
+
+                <div class="progress">
+                    <span style="width:85%"></span>
+                </div>
+
+            </div>
+
+
+            <div class="crop-performance">
+
+                <div>
+                    <span>🌶️ Green Chilli</span>
+                    <strong>₹54,200</strong>
+                </div>
+
+                <div class="progress">
+                    <span style="width:65%"></span>
+                </div>
+
+            </div>
+
+
+            <div class="crop-performance">
+
+                <div>
+                    <span>🧅 Onion</span>
+                    <strong>₹31,200</strong>
+                </div>
+
+                <div class="progress">
+                    <span style="width:45%"></span>
+                </div>
+
+            </div>
+
+
+            <div class="crop-performance">
+
+                <div>
+                    <span>🥔 Potato</span>
+                    <strong>₹16,800</strong>
+                </div>
+
+                <div class="progress">
+                    <span style="width:30%"></span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- CROP PLANNER -->
+
+<section class="section" id="crop-planner">
+
+    <div class="section-head">
+
+        <div>
+            <h2>Smart Crop Planner</h2>
+
+            <p class="muted">
+                Find the crops that may offer the best opportunity for your farm.
+            </p>
+        </div>
+
+        <a href="#">View recommendations →</a>
+
+    </div>
+
+
+    <div class="crop-planner-card">
+
+        <div class="planner-intro">
+
+            <span class="tag">AI-POWERED RECOMMENDATION</span>
+
+            <h2>What should I grow next?</h2>
+
+            <p>
+                We compare season, water availability, land size,
+                market demand, historical prices and nearby buyers.
+            </p>
+
+            <button class="primary-btn">
+                Get Crop Recommendations
+            </button>
+
+        </div>
+
+
+        <div class="crop-recommendations">
+
+            <div class="crop-recommendation best">
+
+                <div class="crop-image">
+                    🍅
+                </div>
+
+                <div class="crop-details">
+
+                    <div class="crop-title">
+
+                        <h3>Tomato</h3>
+
+                        <span class="best-badge">
+                            Best Match
+                        </span>
+
+                    </div>
+
+                    <p class="muted">
+                        High demand • Suitable season • Good buyer availability
+                    </p>
+
+                    <div class="crop-stats">
+
+                        <span>
+                            💧 Medium water
+                        </span>
+
+                        <span>
+                            📈 High demand
+                        </span>
+
+                        <span>
+                            ⭐ 91% match
+                        </span>
+
+                    </div>
+
+                    <strong>
+                        Expected opportunity: ₹28–₹32/kg
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="crop-recommendation">
+
+                <div class="crop-image">
+                    🌶️
+                </div>
+
+                <div class="crop-details">
+
+                    <div class="crop-title">
+
+                        <h3>Green Chilli</h3>
+
+                        <span class="good-badge">
+                            Good Match
+                        </span>
+
+                    </div>
+
+                    <p class="muted">
+                        Strong nearby demand • Moderate water requirement
+                    </p>
+
+                    <div class="crop-stats">
+
+                        <span>
+                            💧 Medium water
+                        </span>
+
+                        <span>
+                            📈 High demand
+                        </span>
+
+                        <span>
+                            ⭐ 84% match
+                        </span>
+
+                    </div>
+
+                    <strong>
+                        Expected opportunity: ₹40–₹48/kg
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="crop-recommendation">
+
+                <div class="crop-image">
+                    🧅
+                </div>
+
+                <div class="crop-details">
+
+                    <div class="crop-title">
+
+                        <h3>Onion</h3>
+
+                        <span class="good-badge">
+                            Good Match
+                        </span>
+
+                    </div>
+
+                    <p class="muted">
+                        Good storage potential • Stable market demand
+                    </p>
+
+                    <div class="crop-stats">
+
+                        <span>
+                            💧 Low water
+                        </span>
+
+                        <span>
+                            📊 Stable demand
+                        </span>
+
+                        <span>
+                            ⭐ 79% match
+                        </span>
+
+                    </div>
+
+                    <strong>
+                        Expected opportunity: ₹24–₹30/kg
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- SMART ALERTS -->
+
+<section class="section" id="alerts">
+
+    <div class="section-head">
+
+        <div>
+            <h2>Smart Alerts</h2>
+
+            <p class="muted">
+                Important updates that can help you make better selling decisions.
+            </p>
+
+        </div>
+
+        <a href="#">View all →</a>
+
+    </div>
+
+
+    <div class="alerts-grid">
+
+
+        <div class="alert-card price-alert">
+
+            <div class="alert-icon">
+                📈
+            </div>
+
+            <div class="alert-content">
+
+                <span class="alert-label">
+                    PRICE OPPORTUNITY
+                </span>
+
+                <h3>Tomato prices increased</h3>
+
+                <p class="muted">
+                    Tomato prices near your area increased by
+                    approximately 8% today.
+                </p>
+
+                <strong>
+                    Current price: ₹29/kg
+                </strong>
+
+            </div>
+
+            <button class="alert-btn">
+                Check Prices →
+            </button>
+
+        </div>
+
+
+        <div class="alert-card buyer-alert">
+
+            <div class="alert-icon">
+                🛒
+            </div>
+
+            <div class="alert-content">
+
+                <span class="alert-label">
+                    BUYER REQUEST
+                </span>
+
+                <h3>New buyer looking for tomatoes</h3>
+
+                <p class="muted">
+                    A verified buyer is looking for
+                    2,000 kg of tomatoes near your location.
+                </p>
+
+                <strong>
+                    Offer: ₹30/kg
+                </strong>
+
+            </div>
+
+            <button class="alert-btn">
+                View Buyer →
+            </button>
+
+        </div>
+
+
+        <div class="alert-card storage-alert">
+
+            <div class="alert-icon">
+                ⏳
+            </div>
+
+            <div class="alert-content">
+
+                <span class="alert-label">
+                    SHELF LIFE ALERT
+                </span>
+
+                <h3>Sell your harvested crop soon</h3>
+
+                <p class="muted">
+                    Your stored tomatoes may have limited
+                    shelf life remaining.
+                </p>
+
+                <strong>
+                    Recommended: Sell within 2 days
+                </strong>
+
+            </div>
+
+            <button class="alert-btn">
+                Find Buyer →
+            </button>
+
+        </div>
+
+
+    </div>
+
+</section>
+              <!-- FOOTER -->
+
+<footer class="footer">
+
+    <div class="footer-main">
+
+        <div class="footer-brand">
+
+            <h2>🌱 AgriSmart</h2>
+
+            <p>
+                Helping farmers find better markets,
+                better buyers and better selling opportunities.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <div>
+                <h4>Platform</h4>
+
+                <a href="#prices">Market Prices</a>
+                <a href="#buyers">Buyers</a>
+                <a href="#storage">Storage</a>
+                <a href="#crop-planner">Crop Planner</a>
+            </div>
+
+
+            <div>
+                <h4>Farmer</h4>
+
+                <a href="#transactions">Transactions</a>
+                <a href="#analytics">Analytics</a>
+                <a href="#alerts">Alerts</a>
+                <a href="#map">Markets</a>
+            </div>
+
+
+            <div>
+                <h4>Support</h4>
+
+                <a href="#">Help Center</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Report a Problem</a>
+                <a href="#">Privacy</a>
+            </div>
+
+        </div>
+
+    </div>
+
+<!-- SMART SELL CALCULATOR -->
+
+<section class="section" id="smart-calculator">
+
+    <div class="section-head">
+        <div>
+            <h2>Smart Sell Calculator</h2>
+            <p class="muted">
+                Calculate your estimated income after transport damage and costs.
+            </p>
+        </div>
+    </div>
+
+    <div style="
+        background:white;
+        border:1px solid #e5ebe6;
+        border-radius:24px;
+        padding:25px;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:25px;
+    ">
+
+        <div>
+
+            <label>Crop</label>
+
+            <select id="calcCrop" style="
+                width:100%;
+                padding:14px;
+                margin:8px 0 18px;
+                border:1px solid #dfe7e1;
+                border-radius:12px;
+            ">
+                <option>Tomato</option>
+                <option>Onion</option>
+                <option>Green Chilli</option>
+                <option>Potato</option>
+            </select>
+
+            <label>Quantity (kg)</label>
+
+            <input id="calcQuantity"
+                type="number"
+                value="2000"
+                style="
+                width:100%;
+                padding:14px;
+                margin:8px 0 18px;
+                border:1px solid #dfe7e1;
+                border-radius:12px;
+            ">
+
+            <label>Selling Price (₹/kg)</label>
+
+            <input id="calcPrice"
+                type="number"
+                value="29"
+                style="
+                width:100%;
+                padding:14px;
+                margin:8px 0 18px;
+                border:1px solid #dfe7e1;
+                border-radius:12px;
+            ">
+
+            <label>Transport Cost (₹)</label>
+
+            <input id="calcTransport"
+                type="number"
+                value="2000"
+                style="
+                width:100%;
+                padding:14px;
+                margin:8px 0 18px;
+                border:1px solid #dfe7e1;
+                border-radius:12px;
+            ">
+
+            <label>Expected Damage (%)</label>
+
+            <input id="calcDamage"
+                type="number"
+                value="10"
+                style="
+                width:100%;
+                padding:14px;
+                margin:8px 0 20px;
+                border:1px solid #dfe7e1;
+                border-radius:12px;
+            ">
+
+            <button
+                class="primary-btn"
+                onclick="runCalculator()">
+
+                Calculate Net Income →
+
+            </button>
+
+        </div>
+
+        <div style="
+            background:#123d2a;
+            color:white;
+            border-radius:20px;
+            padding:25px;
+        ">
+
+            <span style="
+                color:#b7ef65;
+                font-size:12px;
+                font-weight:bold;
+            ">
+                ESTIMATED RESULT
+            </span>
+
+            <h3 id="calcResultCrop"
+                style="font-size:25px;margin-top:15px;">
+                Tomato
+            </h3>
+
+            <p style="opacity:.7;">
+                Estimated Net Income
+            </p>
+
+            <h1 id="calcNetIncome"
+                style="
+                color:#b7ef65;
+                font-size:38px;
+                margin:8px 0 25px;
+            ">
+                ₹50,200
+            </h1>
+
+            <p>Total quantity: <strong id="calcTotal">2,000 kg</strong></p>
+
+            <p>Damaged: <strong id="calcDamaged">200 kg</strong></p>
+
+            <p>Sellable: <strong id="calcSellable">1,800 kg</strong></p>
+
+            <p>Revenue: <strong id="calcRevenue">₹52,200</strong></p>
+
+            <p>Damage value lost: <strong id="calcLoss">₹5,800</strong></p>
+
+        </div>
+
+    </div>
+  <button onclick="calculateNetIncome()">Smart Sell Calculator</button>
+
+</section>
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 AgriSmart
+        </span>
+
+        <span>
+            Built for farmers 🌾
+        </span>
+
+    </div>
+
+</footer>
+              <script>
+
+function sellRequest(buyer) {
+    alert("Sell request sent to " + buyer + " 🌾");
+}
+
+function storageRequest(storage) {
+    alert("Checking storage availability for " + storage + " ❄️");
+}
+
+              </script>
+              </script>
+
+<script>
+
+function calculateNetIncome() {
+
+    let quantity = Number(prompt("Enter quantity in kg:"));
+    let price = Number(prompt("Enter selling price per kg:"));
+    let transport = Number(prompt("Enter transport cost:"));
+    let damage = Number(prompt("Enter expected damage percentage:"));
+
+    let damaged = quantity * damage / 100;
+    let sellable = quantity - damaged;
+    let revenue = sellable * price;
+    let netIncome = revenue - transport;
+
+    alert(
+        "🌾 SMART SELL RESULT\n\n" +
+        "Total: " + quantity + " kg\n" +
+        "Damaged: " + damaged + " kg\n" +
+        "Sellable: " + sellable + " kg\n" +
+        "Revenue: ₹" + revenue + "\n" +
+        "Transport: ₹" + transport + "\n\n" +
+        "💰 NET INCOME: ₹" + netIncome
+    );
+
+}
+
+</script>
+              
+
+</body>
+            </html>
+            
